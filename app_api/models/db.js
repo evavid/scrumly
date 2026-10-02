@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
 
-//var dbURI = "mongodb://localhost/mongodb-community";
-var dbURI = "mongodb+srv://evav:nepravilno@scrumly.m19q2.mongodb.net/scrumlyDb?retryWrites=true&w=majority";
-//if (process.env.NODE_ENV === "production") {
-  //dbURI = process.env.MONGODB_URI;
-//}
+// Set MONGODB_URI in .env (see .env.example); falls back to a local MongoDB.
+var dbURI = process.env.MONGODB_URI || "mongodb://localhost/mongodb-community";
 mongoose.connect(dbURI);
 
 mongoose.connection.on("connected", () => {
-    console.log(`Mongoose je povezan na ${dbURI}.`);
+    console.log("Mongoose je povezan.");
   });
 
   mongoose.connection.on("error", (napaka) => {
